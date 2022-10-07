@@ -11,6 +11,10 @@
     <h2><%= tweet.tweet %> - <%= tweet.username %></h2>
     <a href="/tweets/<%= tweet.id %>/edit">Edit Tweet</a>
     <br>
+    <!-- //delete route is not working properly  so we will use form to delete the tweet -->
+    <form action="/tweets/<%= tweet.id %>?_method=DELETE" method="post">
+        <button type="submit" >Delete</button>
+    </form>
     <a href="/tweets">Back to all tweets</a>
 </body>
 </html>

@@ -10,7 +10,7 @@ app.use(methodOverride('_method')) // for overriding the method of a form to use
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const tweets = [
+let tweets = [
     {
         id: uuidv4(),
         username: 'User01',
@@ -67,11 +67,21 @@ app.patch('/tweets/:id', (req, res) =>{
     res.redirect('/tweets');
 })
 
+
+
+
 //form edit exitsing tweet
 app.get('/tweets/:id/edit', (req,res) =>{
     const {id} = req.params;
     const tweet = tweets.find(t => t.id === id);
     res.render('tweets/edit', {tweet});
+})
+
+// delete specific tweet
+app.delete('/tweets/:id', (req, res) =>{
+    const {id} = req.params;
+    tweets = tweets.filter( t =>  t.id !== id)
+    res.redirect('/tweets')
 })
 
 //reading all tweets
